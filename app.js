@@ -35,6 +35,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const apiPatientsRouter = require('./routes/api/patients')
+const apiDoctorsRouter = require('./routes/api/doctors')
+const apiAppointmentsRouter = require('./routes/api/appointments')
 
 var app = express();
 
@@ -46,5 +49,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/v1/patients', apiPatientsRouter);
+app.use('/api/v1/doctors', apiDoctorsRouter);
+app.use('/api/v1/appointments', apiAppointmentsRouter)
 
 module.exports = app;
+
+
+// /api/v1/doctors/   // post, patch, delete 
+// /api/v1/patients/  // post, patch, delete 
+// /api/v1/patients/:id/appointments    //post
+// /api/v1/appointments   //get, delete
+
+// /api/v1/appointments/:id             
+// /api/v1/appointments/:id/patients
+// /api/v1/patients/                  
+// /api/v1/doctors/:id                  
+
+
